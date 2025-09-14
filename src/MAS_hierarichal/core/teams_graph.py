@@ -25,10 +25,34 @@ def paper_writing_graph():
 
     return paper_writing_graph
 
+# llm = ChatOpenAI(
+#     openai_api_key=os.getenv("OPENAI_API_KEY"),
+#     base_url="https://api.metisai.ir/openai/v1",
+#     model="gpt-4.1-mini", 
+#     temperature=0
+# )
 
-for s in research_graph().stream(
-    {"messages": [("user", "when is Taylor Swift's next tour?")]},
-    {"recursion_limit": 100},
-):
-    print(s)
-    print("---")
+# print(llm.invoke("hi, how are you?"))
+
+# for s in research_graph().stream(
+#     {"messages": [("user", "when is Taylor Swift's next tour?")]},
+#     {"recursion_limit": 100},
+# ):
+#     print(s)
+#     print("---")
+
+# for s in paper_writing_graph().stream(
+#     {
+#         "messages": [
+#             (
+#                 "user",
+#                 "Write an outline for poem about cats and then write the poem to disk.",
+#             )
+#         ]
+#     },
+#     {"recursion_limit": 100},
+# ):
+#     print(s)
+#     print("---")
+
+
