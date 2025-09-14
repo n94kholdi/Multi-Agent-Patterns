@@ -1,5 +1,5 @@
 from pathlib import Path
-from tempfile import TemporaryDirectory
+from tempfile import TemporaryDirectory, mkdtemp
 from typing import Dict, Optional, List
 
 from typing_extensions import Annotated
@@ -7,8 +7,11 @@ from langchain_experimental.utilities import PythonREPL
 from langchain.tools import tool
 
 # ---------------- Safe Working Directory ----------------
-_TEMP_DIRECTORY = TemporaryDirectory()
-WORKING_DIRECTORY = Path(_TEMP_DIRECTORY.name)
+# _TEMP_DIRECTORY = TemporaryDirectory()
+# WORKING_DIRECTORY = Path(_TEMP_DIRECTORY.name)
+
+_TEMP_DIRECTORY = mkdtemp()
+WORKING_DIRECTORY = Path(_TEMP_DIRECTORY)
 ALLOWED_EXTENSIONS = {".txt", ".md"}
 MAX_FILE_SIZE = 10000  # max characters
 
@@ -103,3 +106,6 @@ def python_repl_tool(
     except Exception as e:
         return f"Failed to execute. Error: {repr(e)}"
     return f"Successfully executed safe code:\n{code}"
+
+# print("WORKING_DIRECTORY:", WORKING_DIRECTORY)
+# print("Files:", list(WORKING_DIRECTORY.glob("*")))
